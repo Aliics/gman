@@ -40,7 +40,8 @@ public class Application {
             CommandLineParser.parse(parser.parse(options, args));
 
             final List<String> lines = Files.readAllLines(Paths.get(WORDS_FILE_PATH));
-            GmanWordBuilder.build(lines);
+            final String generatedWord = GmanWordBuilder.build(lines);
+            System.out.println(generatedWord);
         }
         catch (final ParseException e) {
             logger.warn("Exception occurred parsing args [{}] with options [{}]", args, options);
