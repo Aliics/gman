@@ -1,6 +1,6 @@
 package fish.eyebrow.gman;
 
-import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
@@ -10,7 +10,7 @@ public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private static final BasicParser parser = new BasicParser();
+    private static final DefaultParser parser = new DefaultParser();
 
     private static final Options options = new Options();
 
@@ -43,7 +43,17 @@ public class Application {
     }
 
 
-    public static Casing getCasing() {
+    static Casing getCasing() {
         return casing;
+    }
+
+
+    static int getWords() {
+        return words;
+    }
+
+
+    static void setWords(final int words) {
+        Application.words = words;
     }
 }

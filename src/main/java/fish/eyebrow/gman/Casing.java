@@ -28,9 +28,4 @@ enum Casing {
 
         return Optional.ofNullable(found);
     }
-
-
-    public int getOrdinal() {
-        return ordinal;
-    }
 }

@@ -2,7 +2,7 @@ package fish.eyebrow.gman;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.AfterEach;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 class CommandLineParserTestCase {
 
-    private static final BasicParser parser = new BasicParser();
+    private static final DefaultParser parser = new DefaultParser();
 
     private static final Options options = new Options();
 
@@ -28,6 +28,7 @@ class CommandLineParserTestCase {
     @AfterEach
     void tearDown() {
         Application.setCasing(Casing.PASCAL_CASE);
+        Application.setWords(2);
     }
 
 
@@ -58,5 +59,25 @@ class CommandLineParserTestCase {
         CommandLineParser.parse(parser.parse(options, args));
 
         assertThat(Application.getCasing()).isEqualTo(Casing.PASCAL_CASE);
+    }
+
+
+    @Test
+    void assigningValidWords() throws ParseException {
+        final String[] args = { "-w", "44" };
+
+        CommandLineParser.parse(parser.parse(options, args));
+
+        assertThat(Application.getWords()).isEqualTo(44);
+    }
+
+
+    @Test
+    void assigningInvalidWords() throws ParseException {
+        final String[] args = { "-w", "foo" };
+
+        CommandLineParser.parse(parser.parse(options, args));
+
+        assertThat(Application.getWords()).isEqualTo(2);
     }
 }
