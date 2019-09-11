@@ -4,15 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 class CasingTestCase {
 
     @Test
     void validOrdinal() {
         final int casing = 4;
 
-        final Casing found = Casing.ofOrdinal(casing);
+        final Optional<Casing> found = Casing.ofOrdinal(casing);
 
-        assertThat(found).isEqualTo(Casing.KEBAB_CASE);
+        assertThat(found.isPresent()).isTrue();
+        assertThat(found.get()).isEqualTo(Casing.KEBAB_CASE);
     }
 
 
@@ -20,8 +23,8 @@ class CasingTestCase {
     void invalidOrdinal() {
         final int casing = 7;
 
-        final Casing found = Casing.ofOrdinal(casing);
+        final Optional<Casing> found = Casing.ofOrdinal(casing);
 
-        assertThat(found).isNull();
+        assertThat(found.isPresent()).isFalse();
     }
 }

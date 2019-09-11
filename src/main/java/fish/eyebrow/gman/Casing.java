@@ -1,5 +1,7 @@
 package fish.eyebrow.gman;
 
+import java.util.Optional;
+
 enum Casing {
     PASCAL_CASE(0),
     CAMEL_CASE(1),
@@ -16,7 +18,7 @@ enum Casing {
     }
 
 
-    public static Casing ofOrdinal(final int ordinal) {
+    public static Optional<Casing> ofOrdinal(final int ordinal) {
         Casing found = null;
         for (final Casing casing : values()) {
             if (casing.ordinal == ordinal) {
@@ -24,7 +26,7 @@ enum Casing {
             }
         }
 
-        return found;
+        return Optional.ofNullable(found);
     }
 
 

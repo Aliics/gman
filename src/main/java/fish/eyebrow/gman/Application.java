@@ -14,20 +14,20 @@ public class Application {
 
     private static final Options options = new Options();
 
-    static Casing casing = Casing.PASCAL_CASE;
+    private static Casing casing = Casing.PASCAL_CASE;
 
-    static String prefix = "";
+    private static String prefix = "";
 
-    static String suffix = "";
+    private static String suffix = "";
 
-    static int words = 2;
+    private static int words = 2;
 
 
     public static void main(final String... args) {
-        options.addOption("c", "casing", true, "The casing to dictate how your word is formatted.");
-        options.addOption("p", "prefix", true, "Sequence of characters prepended to your word.");
-        options.addOption("s", "suffix", true, "Sequence of characters appended to your word.");
-        options.addOption("w", "words", true, "Number of word to be added to your name.");
+        options.addOption(GmanOptions.CASING);
+        options.addOption(GmanOptions.PREFIX);
+        options.addOption(GmanOptions.SUFFIX);
+        options.addOption(GmanOptions.WORDS);
 
         try {
             CommandLineParser.parse(parser.parse(options, args));
@@ -35,5 +35,15 @@ public class Application {
         catch (final ParseException e) {
             logger.warn("Exception occurred parsing args [{}] with options [{}]", args, options);
         }
+    }
+
+
+    static void setCasing(final Casing casing) {
+        Application.casing = casing;
+    }
+
+
+    public static Casing getCasing() {
+        return casing;
     }
 }
