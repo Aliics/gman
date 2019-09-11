@@ -6,7 +6,15 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Random;
+
 public class Application {
+
+    private static final String WORDS_FILE_PATH = "/etc/dictionaries-common/words";
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
@@ -31,9 +39,15 @@ public class Application {
 
         try {
             CommandLineParser.parse(parser.parse(options, args));
+
+            final List<String> lines = Files.readAllLines(Paths.get(WORDS_FILE_PATH));
+            GmanWordBuilder.build(lines);
         }
         catch (final ParseException e) {
             logger.warn("Exception occurred parsing args [{}] with options [{}]", args, options);
+        }
+        catch (final IOException e) {
+            logger.warn("Could not read from dictionary file [{}]", WORDS_FILE_PATH);
         }
     }
 
