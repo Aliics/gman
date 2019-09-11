@@ -80,4 +80,24 @@ class CommandLineParserTestCase {
 
         assertThat(Application.getWords()).isEqualTo(2);
     }
+
+
+    @Test
+    void assigningPrefix() throws ParseException {
+        final String[] args = { "-p", "foo" };
+
+        CommandLineParser.parse(parser.parse(options, args));
+
+        assertThat(Application.getPrefix()).isEqualTo("foo");
+    }
+
+
+    @Test
+    void assignSuffix() throws ParseException {
+        final String[] args = { "-s", "foo" };
+
+        CommandLineParser.parse(parser.parse(options, args));
+
+        assertThat(Application.getSuffix()).isEqualTo("foo");
+    }
 }

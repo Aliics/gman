@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Random;
 
 public class Application {
 
@@ -69,5 +68,25 @@ public class Application {
 
     static void setWords(final int words) {
         Application.words = words;
+    }
+
+
+    static String getPrefix() {
+        return prefix;
+    }
+
+
+    static void setPrefix(final String prefix) {
+        Application.prefix = prefix;
+    }
+
+
+    static String getSuffix() {
+        return suffix;
+    }
+
+
+    static void setSuffix(final String suffix) {
+        Application.suffix = suffix;
     }
 }

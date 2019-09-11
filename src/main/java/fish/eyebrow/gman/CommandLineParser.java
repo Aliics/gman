@@ -12,6 +12,8 @@ class CommandLineParser {
     static void parse(final CommandLine parse) {
         parseCasing(parse);
         parseWords(parse);
+        parsePrefix(parse);
+        parseSuffix(parse);
     }
 
 
@@ -39,6 +41,24 @@ class CommandLineParser {
             catch (final NumberFormatException e) {
                 logger.warn("Value given [{}] was not a number!", parse.getOptionValue(wordsOptionShort));
             }
+        }
+    }
+
+
+    private static void parsePrefix(final CommandLine parse) {
+        final String prefixOptionShort = GmanOptions.PREFIX.getOpt();
+        if (parse.hasOption(prefixOptionShort)) {
+            final String optionValue = parse.getOptionValue(prefixOptionShort);
+            Application.setPrefix(optionValue);
+        }
+    }
+
+
+    private static void parseSuffix(final CommandLine parse) {
+        final String suffixOptionShort = GmanOptions.SUFFIX.getOpt();
+        if (parse.hasOption(suffixOptionShort)) {
+            final String optionValue = parse.getOptionValue(suffixOptionShort);
+            Application.setSuffix(optionValue);
         }
     }
 }
