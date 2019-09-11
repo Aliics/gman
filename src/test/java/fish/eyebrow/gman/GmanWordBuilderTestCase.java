@@ -26,6 +26,18 @@ class GmanWordBuilderTestCase {
     }
 
 
+    @Test
+    void appendingSuffixAndPrefix() throws IOException {
+        givenLinesFromWordsFile();
+        Application.setPrefix("foo");
+        Application.setSuffix("bar");
+
+        whenBuildCalled();
+
+        assertThat(word).contains("foo").contains("bar");
+    }
+
+
     private void givenLinesFromWordsFile() throws IOException {
         lines = Files.readAllLines(Paths.get(ClassLoader.getSystemResource("words").getPath()));
     }

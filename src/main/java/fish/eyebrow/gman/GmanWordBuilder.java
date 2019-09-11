@@ -15,6 +15,9 @@ public class GmanWordBuilder {
             word.append(lines.get(random.nextInt(bound)));
         }
 
+        word.insert(0, Application.getPrefix());
+        word.insert(word.length(), Application.getSuffix());
+
         return word.toString();
     }
 }
