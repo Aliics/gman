@@ -1,5 +1,6 @@
 package fish.eyebrow.gman;
 
+import fish.eyebrow.gman.casing.Casing;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;

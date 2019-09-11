@@ -2,6 +2,7 @@ package fish.eyebrow.gman;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import fish.eyebrow.gman.casing.Casing;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;

@@ -1,5 +1,6 @@
 package fish.eyebrow.gman;
 
+import fish.eyebrow.gman.casing.Casing;
 import org.apache.commons.cli.CommandLine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

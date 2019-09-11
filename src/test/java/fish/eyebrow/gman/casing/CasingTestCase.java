@@ -1,4 +1,4 @@
-package fish.eyebrow.gman;
+package fish.eyebrow.gman.casing;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

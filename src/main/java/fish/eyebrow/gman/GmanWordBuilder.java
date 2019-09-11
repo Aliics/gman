@@ -2,6 +2,7 @@ package fish.eyebrow.gman;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 
 public class GmanWordBuilder {
 
@@ -12,7 +13,9 @@ public class GmanWordBuilder {
         final int bound = lines.size();
         final StringBuilder word = new StringBuilder();
         for (int i = 0; i < Application.getWords(); i++) {
-            word.append(lines.get(random.nextInt(bound)));
+            final Function<String, String> format = Application.getCasing().getFormat();
+            final String transformed = format.apply(lines.get(random.nextInt(bound)));
+            word.append(transformed);
         }
 
         word.insert(0, Application.getPrefix());
