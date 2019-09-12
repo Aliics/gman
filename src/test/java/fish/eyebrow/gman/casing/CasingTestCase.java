@@ -21,7 +21,7 @@ class CasingTestCase {
 
     @Test
     void invalidOrdinal() {
-        final int casing = 7;
+        final int casing = 12;
 
         final Optional<Casing> found = Casing.ofOrdinal(casing);
 

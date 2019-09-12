@@ -4,12 +4,14 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public enum Casing {
-    PASCAL_CASE(0, PascalCaseFormat::format),
-    CAMEL_CASE(1, CamelCaseFormat::format),
-    SNAKE_CASE(2, SnakeCaseFormat::format),
-    SCREAMING_SNAKE_CASE(3, ScreamingSnakeCaseFormat::format),
-    KEBAB_CASE(4, KebabCaseFormat::format),
-    SPACED(5, SpacedFormat::format);
+    PASCAL_CASE(0, text -> Formatter.format(text, false, false)),
+    CAMEL_CASE(1, text -> Formatter.format(text, true, false)),
+    SNAKE_CASE(2, text -> Formatter.format(text, false, true, "_")),
+    SCREAMING_SNAKE_CASE(3, text -> Formatter.format(text, false, true, "_").toUpperCase()),
+    KEBAB_CASE(4, text -> Formatter.format(text, false, true, "-")),
+    SCREAMING_KEBAB_CASE(5, text -> Formatter.format(text, false, true, "-").toUpperCase()),
+    SPACED(6, text -> Formatter.format(text, false, true, " ")),
+    SCREAMING_SPACED(7, text -> Formatter.format(text, false, true, " ").toUpperCase());
 
     private final int ordinal;
 

@@ -1,6 +1,6 @@
 package fish.eyebrow.gman;
 
-import fish.eyebrow.gman.casing.AbstractFormat;
+import fish.eyebrow.gman.casing.Formatter;
 
 import java.util.List;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class GmanWordBuilder {
             word.append(transformed);
         }
 
-        AbstractFormat.reset();
+        Formatter.reset();
 
         word.insert(0, Application.getPrefix());
         word.insert(word.length(), Application.getSuffix());
