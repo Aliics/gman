@@ -6,7 +6,7 @@ Sometimes you just cannot figure out what on Earth to name something, I know tha
 an endless loop of staring off and forgetting what I was working on before I had to think of what to call my rubbish.
 That is why *gman* exists! Git branches, project names, children! Name them all with gman!
 
-Currently at version `1.0.0`, meaning it is working at a basic level but more features are to be added.
+Currently at version `1.1.0`, meaning it is working at a basic level but more features are to be added.
 
 
 # current features
@@ -14,6 +14,7 @@ Currently at version `1.0.0`, meaning it is working at a basic level but more fe
  - prefixes
  - suffixes
  - word counts
+ - 8 casing formats
 
 # to be made
 
