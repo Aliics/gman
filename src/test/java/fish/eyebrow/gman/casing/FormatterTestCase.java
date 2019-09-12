@@ -43,9 +43,17 @@ class FormatterTestCase {
 
     @Test
     void snakeCase() {
-        callFormatterWithWords(false, "_");
+        callFormatterWithWords("_");
 
         assertThat(transformed).isEqualTo("this_isnt_the_worst");
+    }
+
+
+    @Test
+    void kebabCase() {
+        callFormatterWithWords("-");
+
+        assertThat(transformed).isEqualTo("this-isnt-the-worst");
     }
 
 
@@ -60,11 +68,11 @@ class FormatterTestCase {
     }
 
 
-    private void callFormatterWithWords(final boolean firstLower, final String delimiter) {
+    private void callFormatterWithWords(final String delimiter) {
         final StringBuilder transformedBuilder = new StringBuilder();
 
         for (final String word : words) {
-            transformedBuilder.append(Formatter.format(word, firstLower, true, delimiter));
+            transformedBuilder.append(Formatter.format(word, false, true, delimiter));
         }
 
         transformed = transformedBuilder.toString();
