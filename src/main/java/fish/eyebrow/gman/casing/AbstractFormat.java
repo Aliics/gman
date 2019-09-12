@@ -8,6 +8,6 @@ abstract class AbstractFormat {
 
 
     static String capitalize(final String text) {
-        return text.replace(text.charAt(0), Character.toUpperCase(text.charAt(0)));
+        return Character.toUpperCase(text.charAt(0)) + text.substring(1);
     }
 }
