@@ -4,7 +4,7 @@ public class SnakeCaseFormat extends AbstractFormat {
 
     public static String format(final String text) {
         try {
-            return (firstWord ? "" : "_") + text.toLowerCase();
+            return (firstWord ? "" : "_") + removeCommas(text.toLowerCase());
         } finally {
             firstWord = false;
         }
