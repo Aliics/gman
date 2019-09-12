@@ -2,11 +2,9 @@
 
 ***G***ive ***M***e ***A*** ***N***ame.
 
-Sometimes you just cannot figure out what on Earth to name something, I know that I am constantly stuck in
-an endless loop of staring off and forgetting what I was working on before I had to think of what to call my rubbish.
-That is why *gman* exists! Git branches, project names, children! Name them all with gman!
+Need a name for something? Git branches, project names, or children... just use *gman* to name it!
 
-Currently at version `1.1.0`, meaning it is working at a basic level but more features are to be added.
+Currently at version `1.1.0`, it currently has most of the features I intend, but they aren't fully fleshed out yet.
 
 
 # install
@@ -28,6 +26,7 @@ It's as easy as that!
 
 # to be made
 
+ - logs
  - data sources
  - windows support
  - ui support
