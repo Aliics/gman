@@ -6,10 +6,10 @@ import java.util.function.Function;
 public enum Casing {
     PASCAL_CASE(0, PascalCaseFormat::format),
     CAMEL_CASE(1, CamelCaseFormat::format),
-    SNAKE_CASE(2, PascalCaseFormat::format),
-    SCREAMING_SNAKE_CASE(3, PascalCaseFormat::format),
-    KEBAB_CASE(4, PascalCaseFormat::format),
-    SPACED(5, PascalCaseFormat::format);
+    SNAKE_CASE(2, SnakeCaseFormat::format),
+    SCREAMING_SNAKE_CASE(3, ScreamingSnakeCaseFormat::format),
+    KEBAB_CASE(4, KebabCaseFormat::format),
+    SPACED(5, SpacedFormat::format);
 
     private final int ordinal;
 
