@@ -1,6 +1,9 @@
 package fish.eyebrow.gman.casing;
 
-abstract class AbstractFormat {
+public abstract class AbstractFormat {
+
+    static boolean firstWord = true;
+
 
     static String removeCommas(final String text) {
         return text.replaceAll("'", "");
@@ -9,5 +12,10 @@ abstract class AbstractFormat {
 
     static String capitalize(final String text) {
         return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+    }
+
+
+    public static void reset() {
+        firstWord = true;
     }
 }
