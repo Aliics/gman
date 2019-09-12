@@ -9,6 +9,15 @@ That is why *gman* exists! Git branches, project names, children! Name them all 
 Currently at version `1.1.0`, meaning it is working at a basic level but more features are to be added.
 
 
+# install
+
+I created an small installation script so I won't need to do this manually again at some point. 
+
+`$ sudo ./src/main/scripts/install.sh`
+
+It's as easy as that!
+
+
 # current features
 
  - prefixes
@@ -16,9 +25,9 @@ Currently at version `1.1.0`, meaning it is working at a basic level but more fe
  - word counts
  - 8 casing formats
 
+
 # to be made
 
- - bash wrapper
  - data sources
  - windows support
  - ui support
