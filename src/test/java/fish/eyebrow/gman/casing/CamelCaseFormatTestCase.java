@@ -27,5 +27,7 @@ class CamelCaseFormatTestCase {
         for (final String word : words) {
             stringBuilder.append(CamelCaseFormat.format(word));
         }
+
+        AbstractFormat.reset();
     }
 }

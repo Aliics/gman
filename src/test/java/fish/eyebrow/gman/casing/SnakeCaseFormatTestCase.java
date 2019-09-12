@@ -27,5 +27,7 @@ class SnakeCaseFormatTestCase {
         for (final String word : words) {
             stringBuilder.append(SnakeCaseFormat.format(word));
         }
+
+        AbstractFormat.reset();
     }
 }
