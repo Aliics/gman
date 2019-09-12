@@ -19,7 +19,6 @@ Currently at version `1.1.0`, meaning it is working at a basic level but more fe
 # to be made
 
  - bash wrapper
- - more formats
  - data sources
  - windows support
  - ui support
