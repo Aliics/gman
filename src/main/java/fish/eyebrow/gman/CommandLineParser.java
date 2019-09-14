@@ -10,6 +10,8 @@ class CommandLineParser {
 
     private static final Logger logger = LoggerFactory.getLogger(CommandLineParser.class);
 
+    private static final HelpFormatter helpFormatter = new HelpFormatter();
+
     private static final String GMAN_OPTIONS_SYNTAX = "gman [OPTIONS]";
 
 
@@ -70,7 +72,7 @@ class CommandLineParser {
 
     private static void parseHelp(final CommandLine parse) {
         if (parse.hasOption(GmanOptions.HELP.getOpt())) {
-            new HelpFormatter().printHelp(GMAN_OPTIONS_SYNTAX, Application.getOptions());
+            helpFormatter.printHelp(GMAN_OPTIONS_SYNTAX, Application.getOptions());
         }
     }
 }
