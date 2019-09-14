@@ -4,7 +4,7 @@
 
 Need a name for something? Git branches, project names, or children... just use *gman* to name it!
 
-Currently at version `1.1.1`, it currently has most of the features I intend, but they aren't fully fleshed out yet.
+Currently at version `1.1.2`, it currently has most of the features I intend, but they aren't fully fleshed out yet.
 
 
 # install
