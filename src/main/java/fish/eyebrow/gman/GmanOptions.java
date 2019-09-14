@@ -11,7 +11,7 @@ class GmanOptions {
 
     static final Option SUFFIX = new Option("s", "suffix", true, "Sequence of characters appended to your word.");
 
-    static final Option WORDS = new Option("w", "words", true, "Number of word to be added to your name.");
+    static final Option WORDS = new Option("w", "words", true, "Number of words used to create your name.");
 
     static final Option HELP = new Option("h", "help", false, "Display help information.");
 
