@@ -42,7 +42,7 @@ public class Application {
             System.out.println(generatedWord);
         }
         catch (final ParseException e) {
-            logger.warn("Exception occurred parsing args [{}] with options [{}]", args, options);
+            logger.warn("Exception occurred parsing args [{}]", args);
         }
         catch (final IOException e) {
             logger.warn("Could not read from dictionary file [{}]", WORDS_FILE_PATH);
