@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -31,7 +32,7 @@ public class Application {
     private static int words = 2;
 
 
-    public static void main(final String... args) {
+    public static void main(final String[] args) {
         GmanOptions.setup();
 
         try {
@@ -42,7 +43,7 @@ public class Application {
             System.out.println(generatedWord);
         }
         catch (final ParseException e) {
-            logger.warn("Exception occurred parsing args [{}]", args);
+            logger.warn("Exception occurred parsing args {}", Arrays.toString(args));
         }
         catch (final IOException e) {
             logger.warn("Could not read from dictionary file [{}]", WORDS_FILE_PATH);

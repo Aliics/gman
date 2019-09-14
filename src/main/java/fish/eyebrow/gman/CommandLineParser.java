@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
 
 class CommandLineParser {
 
+    private static final String GMAN_OPTIONS_SYNTAX = "gman [OPTIONS]";
+
     private static final Logger logger = LoggerFactory.getLogger(CommandLineParser.class);
 
     private static final HelpFormatter helpFormatter = new HelpFormatter();
-
-    private static final String GMAN_OPTIONS_SYNTAX = "gman [OPTIONS]";
 
 
     static void parse(final CommandLine parse) {

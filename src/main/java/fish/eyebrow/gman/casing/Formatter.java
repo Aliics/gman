@@ -14,7 +14,8 @@ public class Formatter {
         try {
             final String transformed = removeCommas(text.toLowerCase());
             final String transformedDelimiter = firstWord ? "" : delimiter;
-            return transformedDelimiter + (firstLower && firstWord ? transformed : (ignoreCapital ? transformed : capitalize(transformed)));
+            final String capitalized = ignoreCapital ? transformed : capitalize(transformed);
+            return transformedDelimiter + (firstLower && firstWord ? transformed : capitalized);
         } finally {
             firstWord = false;
         }
