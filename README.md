@@ -4,7 +4,7 @@
 
 Need a name for something? Git branches, project names, or children... just use *gman* to name it!
 
-Currently at version `1.1.0`, it currently has most of the features I intend, but they aren't fully fleshed out yet.
+Currently at version `1.1.1`, it currently has most of the features I intend, but they aren't fully fleshed out yet.
 
 
 # install
@@ -22,6 +22,7 @@ It's as easy as that!
  - suffixes
  - word counts
  - 8 casing formats
+ - help display
 
 
 # to be made
