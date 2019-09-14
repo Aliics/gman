@@ -2,6 +2,7 @@ package fish.eyebrow.gman;
 
 import fish.eyebrow.gman.casing.Casing;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.HelpFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,12 +10,15 @@ class CommandLineParser {
 
     private static final Logger logger = LoggerFactory.getLogger(CommandLineParser.class);
 
+    private static final String GMAN_OPTIONS_SYNTAX = "gman [OPTIONS]";
+
 
     static void parse(final CommandLine parse) {
         parseCasing(parse);
         parseWords(parse);
         parsePrefix(parse);
         parseSuffix(parse);
+        parseHelp(parse);
     }
 
 
@@ -60,6 +64,13 @@ class CommandLineParser {
         if (parse.hasOption(suffixOptionShort)) {
             final String optionValue = parse.getOptionValue(suffixOptionShort);
             Application.setSuffix(optionValue);
+        }
+    }
+
+
+    private static void parseHelp(final CommandLine parse) {
+        if (parse.hasOption(GmanOptions.HELP.getOpt())) {
+            new HelpFormatter().printHelp(GMAN_OPTIONS_SYNTAX, Application.getOptions());
         }
     }
 }

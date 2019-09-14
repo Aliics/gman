@@ -32,10 +32,7 @@ public class Application {
 
 
     public static void main(final String... args) {
-        options.addOption(GmanOptions.CASING);
-        options.addOption(GmanOptions.PREFIX);
-        options.addOption(GmanOptions.SUFFIX);
-        options.addOption(GmanOptions.WORDS);
+        GmanOptions.setup();
 
         try {
             CommandLineParser.parse(parser.parse(options, args));
@@ -50,6 +47,11 @@ public class Application {
         catch (final IOException e) {
             logger.warn("Could not read from dictionary file [{}]", WORDS_FILE_PATH);
         }
+    }
+
+
+    public static Options getOptions() {
+        return options;
     }
 
 

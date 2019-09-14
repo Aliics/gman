@@ -1,6 +1,9 @@
 package fish.eyebrow.gman;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.verify;
 
 import fish.eyebrow.gman.casing.Casing;
 import org.apache.commons.cli.DefaultParser;
@@ -9,20 +12,26 @@ import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.PrintStream;
+
+@ExtendWith(MockitoExtension.class)
 class CommandLineParserTestCase {
+
+    @Mock
+    private static PrintStream outputStreamMock;
 
     private static final DefaultParser parser = new DefaultParser();
 
-    private static final Options options = new Options();
+    private static final Options options = Application.getOptions();
 
 
     @BeforeEach
     void setUp() {
-        options.addOption(GmanOptions.CASING);
-        options.addOption(GmanOptions.PREFIX);
-        options.addOption(GmanOptions.SUFFIX);
-        options.addOption(GmanOptions.WORDS);
+        GmanOptions.setup();
     }
 
 
@@ -100,5 +109,15 @@ class CommandLineParserTestCase {
         CommandLineParser.parse(parser.parse(options, args));
 
         assertThat(Application.getSuffix()).isEqualTo("foo");
+    }
+
+    @Test
+    void displayHelp() throws ParseException {
+        final String[] args = { "-h" };
+        System.setOut(outputStreamMock);
+
+        CommandLineParser.parse(parser.parse(options, args));
+
+        verify(outputStreamMock).write(any(byte[].class), anyInt(), anyInt());
     }
 }
