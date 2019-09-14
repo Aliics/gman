@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'fish.eyebrow'
-version '1.1.0'
+version '1.1.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:1.7.28'
     implementation 'commons-cli:commons-cli:1.4'
     testImplementation 'org.assertj:assertj-core:3.13.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
     testImplementation 'org.junit.platform:junit-platform-runner:1.5.1'
