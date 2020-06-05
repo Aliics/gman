@@ -12,7 +12,7 @@ func main() {
 	wordsFile := files.OpenWordsFile()
 	defer wordsFile.Close()
 
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 100; i++ {
 		output.WriteString(wordsFile.RandomWord())
 	}
 

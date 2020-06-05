@@ -41,8 +41,15 @@ func OpenWordsFile() WordsFile {
 		panic("could not open " + wordsFilePath)
 	}
 
+	lines := getFileLines(file)
+
+	return WordsFile{file, lines}
+}
+
+func getFileLines(file *os.File) []string {
 	fileData, fileLength := readFile(file)
 	lines := make([]string, len(fileData))
+
 	var word string
 	var count int
 	for i, v := range fileData {
@@ -58,7 +65,7 @@ func OpenWordsFile() WordsFile {
 		}
 	}
 
-	return WordsFile{file, lines}
+	return lines
 }
 
 func readFile(file *os.File) ([]byte, int) {
