@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	args.ParseArgs()
-
 	var output strings.Builder
+
+	args.ParseArgs()
 
 	wordsFile := files.OpenWordsFile()
 	defer wordsFile.Close()
