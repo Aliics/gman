@@ -9,7 +9,7 @@ var (
 	WordCount         = flag.Int("count", 1, "amount of words to generate")
 	delimiter         = flag.String("delimiter", " ", "sequence of characters to separate words")
 	capitalise        = flag.Bool("capital", false, "words will be capitalised")
-	upperCase         = flag.Bool("upper", false, "words will be in upper case")
+	upperCase         = flag.Bool("upper", false, "words will be in upper case (overrides capitalisation)")
 	prefix            = flag.String("prefix", "", "output will begin with")
 	suffix            = flag.String("suffix", "", "output will end with")
 	removeApostrophes = flag.Bool("rm-apos", false, "remove apostrophes from words")
@@ -21,29 +21,33 @@ func ParseArgs() {
 }
 
 func ApplyArgs(word *string) {
+	seenCount++
+	augmented := *word
+
 	if *upperCase {
-		*word = strings.ToUpper(*word)
+		augmented = strings.ToUpper(augmented)
 	} else {
-		retain := (*word)[1:]
+		retain := (augmented)[1:]
 		if *capitalise {
-			*word = strings.ToUpper((*word)[:1]) + retain
+			augmented = strings.ToUpper((augmented)[:1]) + retain
 		} else {
-			*word = strings.ToLower((*word)[:1]) + retain
+			augmented = strings.ToLower((augmented)[:1]) + retain
 		}
 	}
 
 	if *removeApostrophes {
-		*word = strings.Replace(*word, "'", "", 1)
+		augmented = strings.Replace(augmented, "'", "", 1)
 	}
 
-	seenCount++
 	if seenCount == 1 {
-		*word = *prefix + *word
+		augmented = *prefix + augmented
 	}
 
 	if seenCount < *WordCount {
-		*word += *delimiter
+		augmented += *delimiter
 	} else {
-		*word += *suffix
+		augmented += *suffix
 	}
+
+	*word = augmented
 }
