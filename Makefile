@@ -1,7 +1,7 @@
 CC = go
 OUT = build
 
-all: clean gman run
+all: clean gman
 
 clean:
 	rm -rf $(OUT)
@@ -12,4 +12,7 @@ gman:
 run:
 	exec build/gman
 
-.PHONY: clean gman
+test:
+	$(CC) test ./...
+
+.PHONY: clean gman run test
