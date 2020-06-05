@@ -15,4 +15,7 @@ run:
 test:
 	$(CC) test ./...
 
+install:
+	cp build/gman /usr/local/bin/
+
 .PHONY: clean gman run test
