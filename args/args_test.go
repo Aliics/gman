@@ -72,6 +72,16 @@ func TestSuffix(t *testing.T) {
 	assertEqual(t, "wuv!", word1)
 }
 
+func TestRemoveApostrophies(t *testing.T) {
+	setup()
+	*removeApostrophes = true
+	word := "lari's"
+
+	ApplyArgs(&word)
+
+	assertEqual(t, "laris", word)
+}
+
 func setup() {
 	*WordCount = 0
 	*delimiter = " "
@@ -79,10 +89,11 @@ func setup() {
 	*upperCase = false
 	*prefix = ""
 	*suffix = ""
+	*removeApostrophes = false
 	seenCount = 0
 }
 
-func assertEqual(t *testing.T, expected interface{}, actual interface{}) {
+func assertEqual(t *testing.T, expected, actual interface{}) {
 	if expected != actual {
 		t.Errorf("actual {%s} does not equal expected {%s}", actual, expected)
 	}

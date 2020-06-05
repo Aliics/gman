@@ -6,13 +6,14 @@ import (
 )
 
 var (
-	WordCount  = flag.Int("count", 1, "amount of words to generate")
-	delimiter  = flag.String("delimiter", " ", "sequence of characters to separate words")
-	capitalise = flag.Bool("capital", false, "words will be capitalised")
-	upperCase  = flag.Bool("upper", false, "words will be in upper case")
-	prefix     = flag.String("prefix", "", "output will begin with")
-	suffix     = flag.String("suffix", "", "output will end with")
-	seenCount  int
+	WordCount         = flag.Int("count", 1, "amount of words to generate")
+	delimiter         = flag.String("delimiter", " ", "sequence of characters to separate words")
+	capitalise        = flag.Bool("capital", false, "words will be capitalised")
+	upperCase         = flag.Bool("upper", false, "words will be in upper case")
+	prefix            = flag.String("prefix", "", "output will begin with")
+	suffix            = flag.String("suffix", "", "output will end with")
+	removeApostrophes = flag.Bool("rm-apos", false, "remove apostrophes from words")
+	seenCount         int
 )
 
 func ParseArgs() {
@@ -29,6 +30,10 @@ func ApplyArgs(word *string) {
 		} else {
 			*word = strings.ToLower((*word)[:1]) + retain
 		}
+	}
+
+	if *removeApostrophes {
+		*word = strings.Replace(*word, "'", "", 1)
 	}
 
 	seenCount++
