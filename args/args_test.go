@@ -72,7 +72,7 @@ func TestSuffix(t *testing.T) {
 	assertEqual(t, "wuv!", word1)
 }
 
-func TestRemoveApostrophies(t *testing.T) {
+func TestRemoveApostrophes(t *testing.T) {
 	setup()
 	*removeApostrophes = true
 	word := "lari's"
@@ -86,7 +86,7 @@ func TestCapitalisingSequence(t *testing.T) {
 	setup()
 	*capitaliseSequence = true
 	word0 := "hello"
-	word1 := "world"
+	word1 := "World"
 
 	ApplyArgs(&word0)
 	ApplyArgs(&word1)
