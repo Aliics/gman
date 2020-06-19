@@ -82,6 +82,33 @@ func TestRemoveApostrophies(t *testing.T) {
 	assertEqual(t, "laris", word)
 }
 
+func TestCapitalisingSequence(t *testing.T) {
+	setup()
+	*capitaliseSequence = true
+	word0 := "hello"
+	word1 := "world"
+
+	ApplyArgs(&word0)
+	ApplyArgs(&word1)
+
+	assertEqual(t, "Hello", word0)
+	assertEqual(t, "world", word1)
+}
+
+func TestCapitalisingSequenceIgnoresPrefix(t *testing.T) {
+	setup()
+	*prefix = ">"
+	*capitaliseSequence = true
+	word0 := "hello"
+	word1 := "world"
+
+	ApplyArgs(&word0)
+	ApplyArgs(&word1)
+
+	assertEqual(t, ">Hello", word0)
+	assertEqual(t, "world", word1)
+}
+
 func setup() {
 	*WordCount = 0
 	*delimiter = " "
@@ -90,6 +117,7 @@ func setup() {
 	*prefix = ""
 	*suffix = ""
 	*removeApostrophes = false
+	*capitaliseSequence = false
 	seenCount = 0
 }
 
