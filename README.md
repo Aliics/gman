@@ -1,10 +1,19 @@
 # gman
+
 **G**ive **M**e **A** **N**ame.
 
 Need a name for something? Maybe you just need some random text as a placeholder?
 Luckily, **gman** can do that and very quickly! 
 
-# Performance
+# installation
+
+Installation is managed via `go`. A simple command is all you need to install this
+wonderful tool!
+
+> $ go get -u github.com/aliics/gman
+
+# performance
+
 As much as you care about a name generator being fast, I've decided to make sure it is
 performant.
 
