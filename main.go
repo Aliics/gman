@@ -1,9 +1,9 @@
 package main
 
 import (
-	"./args"
-	"./files"
 	"fmt"
+	"github.com/aliics/gman/args"
+	"github.com/aliics/gman/files"
 	"strings"
 )
 
