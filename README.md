@@ -4,33 +4,6 @@
 Need a name for something? Maybe you just need some random text as a placeholder?
 Luckily, **gman** can do that and very quickly! 
 
-# Usage
-### Prerequisites
-- make
-- go
-- a command line
-
-### Compile me!
-I have written a pretty basic *Makefile* to do the "heavy-lifting" for you... not that
-*go*'s CLI is that difficult to use.
-
-Run the *Makefile*:
-```shell script
-$ make
-```
-That should create a binary in a `./build` called `gman`.
-
-Run the *compiled binary*:
-```shell script
-$ ./build/gman
-```
-or
-```shell script
-$ exec build/gman
-```
-
-For any of the flags for custom formatting, give the program the `-help` flag.
-
 # Performance
 As much as you care about a name generator being fast, I've decided to make sure it is
 performant.
