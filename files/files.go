@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	wordsFilePath   string = "/etc/dictionaries-common/words"
+	wordsFilePath   string = "/usr/share/dict/words"
 	maxFileReadSize int    = 615100 * 6
 )
 
