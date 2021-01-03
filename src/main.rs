@@ -1,15 +1,22 @@
-use tokio::io::AsyncReadExt;
+ use tokio::io::AsyncReadExt;
+use tokio::task::spawn;
 use tokio::fs::File;
 use rand::Rng;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    let count: i32 = 1_000_000;
     let mut f = File::open("/etc/dictionaries-common/words").await?;
     let mut data = Vec::new();
     f.read_to_end(&mut data).await?;
     let words = group_words(data);
-    let line: usize = rand::thread_rng().gen_range(0..words.len());
-    println!("{}", words[line]);
+    for _ in 0..count {
+        let line: usize = rand::thread_rng().gen_range(0..words.len());
+        let word = words[line].clone();
+        spawn(async move {
+            println!("{}", word);
+        });
+    }
     Ok(())
 }
 
