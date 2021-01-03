@@ -1,26 +1,31 @@
+use clap::{App, Arg, ArgMatches};
+use core::result;
 use rand::Rng;
-use std::sync::Arc;
-use tokio::fs::File;
-use tokio::io::AsyncReadExt;
-use tokio::task::spawn;
+use std::io::{self, Read};
+use std::{fs::File, num::ParseIntError};
 
-#[tokio::main]
-async fn main() -> std::io::Result<()> {
-    let count: i32 = 1_000_000;
-    let mut f = File::open("/etc/dictionaries-common/words").await?;
+fn main() -> io::Result<()> {
+    let am = App::new("gman")
+        .arg(
+            Arg::with_name("count")
+                .help("amount of words to be generated")
+                .short("c")
+                .long("count")
+                .takes_value(true)
+                .default_value("1"),
+        )
+        .get_matches();
+    let Conf { count } = Conf::of_arg_matches(am).unwrap();
+    let mut f = File::open("/etc/dictionaries-common/words")?;
     let mut data = Vec::new();
-    f.read_to_end(&mut data).await?;
-    let words = Arc::new(group_words(data));
+    f.read_to_end(&mut data)?;
+    let words = group_words(data);
     for _ in 0..count {
-        spawn(gen_word(words.clone()));
+        let line = rand::thread_rng().gen_range(0..words.len());
+        let word = words[line].as_str();
+        print!("{} ", word);
     }
     Ok(())
-}
-
-async fn gen_word(words: Arc<Vec<String>>) {
-    let line: usize = rand::thread_rng().gen_range(0..words.len());
-    let word = words[line].as_str();
-    println!("{}", word);
 }
 
 fn group_words(bytes: Vec<u8>) -> Vec<String> {
@@ -35,6 +40,17 @@ fn group_words(bytes: Vec<u8>) -> Vec<String> {
         }
     }
     words
+}
+
+struct Conf {
+    count: i32,
+}
+
+impl Conf {
+    fn of_arg_matches(am: ArgMatches) -> result::Result<Conf, ParseIntError> {
+        let count = am.value_of("count").unwrap().parse()?;
+        Ok(Conf { count })
+    }
 }
 
 #[cfg(test)]
