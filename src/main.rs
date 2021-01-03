@@ -1,7 +1,8 @@
- use tokio::io::AsyncReadExt;
-use tokio::task::spawn;
-use tokio::fs::File;
 use rand::Rng;
+use std::sync::Arc;
+use tokio::fs::File;
+use tokio::io::AsyncReadExt;
+use tokio::task::spawn;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
@@ -9,15 +10,17 @@ async fn main() -> std::io::Result<()> {
     let mut f = File::open("/etc/dictionaries-common/words").await?;
     let mut data = Vec::new();
     f.read_to_end(&mut data).await?;
-    let words = group_words(data);
+    let words = Arc::new(group_words(data));
     for _ in 0..count {
-        let line: usize = rand::thread_rng().gen_range(0..words.len());
-        let word = words[line].clone();
-        spawn(async move {
-            println!("{}", word);
-        });
+        spawn(gen_word(words.clone()));
     }
     Ok(())
+}
+
+async fn gen_word(words: Arc<Vec<String>>) {
+    let line: usize = rand::thread_rng().gen_range(0..words.len());
+    let word = words[line].as_str();
+    println!("{}", word);
 }
 
 fn group_words(bytes: Vec<u8>) -> Vec<String> {
