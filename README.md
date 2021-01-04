@@ -3,23 +3,29 @@
 **G**ive **M**e **A** **N**ame.
 
 Need a name for something? Maybe you just need some random text as a placeholder?
-Luckily, **gman** can do that and very quickly! 
+Luckily, `gman` can do that and very quickly! 
 
-# installation
+# history
 
-Installation is managed via `go`. A simple command is all you need to install this
-wonderful tool!
+`gman` was a small script originally written in [Lua](https://lua.org/).
+This was fine, but I got hung up the performance and wanted to implement it in
+a language that I actually use.
 
-> $ go get -u github.com/aliics/gman
+So, I then switched over to the language I use for work, 
+[Java](https://openjdk.net/). This was far faster, at runtime, than the `Lua`
+version. But this version was pretty short lived because of the verbosity and
+*JVM* cold start overhead.
 
-# performance
+After using [Go](https://golang.org/) for a short amount of time I really wanted
+to reimplement this project yet again. This boasted the best performance yet,
+and I was quite happy with the language. I felt like this was finally something
+I could put to rest.
 
-As much as you care about a name generator being fast, I've decided to make sure it is
-performant.
+As you may have guessed, the story didn't end with the `Go` implementation.
+[Rust](https://rust-lang.org/) made it's way back into my life after 
+experiencing excessive `interface{}`, `reflect.ValueOf(...)`, and `err != nil`
+usages. I really missed `Rust`.
 
-Originally **gman** was written in *Lua*, but I decided to switch to a slightly faster
-language that I am very familiar with *Java*. However, I decided to yet again rewrite
-**gman** due to the fact that *Java* is not the most suited for CLI applications.
-
-**Gman** is currently written in **Go**, boasts speeds up to **4x** my previous 
-implementation. On my laptop I can generate **1,000,000** words in around **1 second**.
+Additionally the `Rust` version is at least on-par, if not faster, than the `Go`
+version. I also gained the countless safeties of working in `Rust` that were
+previously missing.
