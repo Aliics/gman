@@ -6,6 +6,7 @@ use std::{fs::File, num::ParseIntError};
 
 fn main() -> io::Result<()> {
     let am = App::new("gman")
+        .version("0.1.0")
         .args(&[
             Arg::with_name("count")
                 .help("amount of words to be generated")
