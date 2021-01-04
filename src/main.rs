@@ -4,6 +4,21 @@ use rand::Rng;
 use std::io::{self, Read};
 use std::{fs::File, num::ParseIntError};
 
+const DICT: &str = "/etc/dictionaries-common/words";
+
+struct Conf {
+    count: i32,
+    delimiter: String,
+}
+
+impl Conf {
+    fn of_arg_matches(am: ArgMatches) -> result::Result<Conf, ParseIntError> {
+        let count = am.value_of("count").unwrap().parse()?;
+        let delimiter = am.value_of("delimiter").unwrap().to_owned();
+        Ok(Conf { count, delimiter })
+    }
+}
+
 fn main() -> io::Result<()> {
     let am = App::new("gman")
         .version("0.1.0")
@@ -23,12 +38,13 @@ fn main() -> io::Result<()> {
         ])
         .get_matches();
     let Conf { count, delimiter } = Conf::of_arg_matches(am).unwrap();
-    let mut f = File::open("/etc/dictionaries-common/words")?;
+    let mut f = File::open(DICT)?;
     let mut data = Vec::new();
     f.read_to_end(&mut data)?;
     let words = group_words(data);
+    let mut rng = rand::thread_rng();
     for i in 0..count {
-        let line = rand::thread_rng().gen_range(0..words.len());
+        let line = rng.gen_range(0..words.len());
         let word = words[line].as_str();
         let delimiter = if i < count - 1 {
             delimiter.as_str()
@@ -52,19 +68,6 @@ fn group_words(bytes: Vec<u8>) -> Vec<String> {
         }
     }
     words
-}
-
-struct Conf {
-    count: i32,
-    delimiter: String,
-}
-
-impl Conf {
-    fn of_arg_matches(am: ArgMatches) -> result::Result<Conf, ParseIntError> {
-        let count = am.value_of("count").unwrap().parse()?;
-        let delimiter = am.value_of("delimiter").unwrap().to_owned();
-        Ok(Conf { count, delimiter })
-    }
 }
 
 #[cfg(test)]
